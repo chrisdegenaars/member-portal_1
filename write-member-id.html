@@ -1,0 +1,35 @@
+<script>
+      function checkUserStatus(){
+            if (useFirebase){
+                if (firebase.auth().currentUser==null){
+                    window.location = "<Login page URL>";
+                }
+            }
+        }
+        firebase.auth().onAuthStateChanged(function(user) {
+          if (!user && useFirebase) {
+              //alert('Signedin');
+              window.location = "<Login page URL>";
+          }
+        });
+    function writeUserData() {
+        var uid = firebase.auth().currentUser.uid;
+        console.log(uid);
+        console.log($('#user_name').val());
+        if ($('#user_name').val()){
+          var database = firebase.database();
+          console.log("in user list"+uid);
+          firebase.database().ref().child('users/'+uid).set({
+            member_number : $('#user_name').val()
+         }).then(function() {
+    console.log('succeeded');
+    window.location = "<A protected page URL>";
+  })
+  .catch(function(error) {
+    console.log('Synchronization failed');
+  });
+        }
+      }
+     </script>
+     <input type="input" name="user_name" value="1234567" id="user_name"/>
+     <input type="button" value="Write user data to database" onclick="writeUserData()"/>
