@@ -10,4 +10,12 @@ Step 1.
 
 Step 2.
 
-- Log
+- Log back into Duda and access the websites Developer Mode
+- Navigate to the Site HTML/CSS section and click "head-section.html"
+- Insert the HTML in the `header.html` file and replace the following variables with the Google Firebase Project Web Setup specifications:
+  - apiKey
+  - authDomain
+  - databaseURL
+  - projectId
+  - storageBucket
+  - messagingSenderId
