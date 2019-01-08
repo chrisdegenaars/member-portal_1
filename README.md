@@ -6,4 +6,8 @@ Member Portal 1.0 developed using Google Firebase to create a member portal on c
 Step 1.
 
  - Make sure the website is published
- - Create a new project inside Google Firebase
+ - Create a new project inside Google Firebase (each website/property will have their own project)
+
+Step 2.
+
+- Log
