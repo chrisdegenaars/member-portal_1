@@ -1,0 +1,52 @@
+<div id="errMsg">
+      </div>
+      <br/>
+     <label>
+      Enter First Name
+     </label>
+     <input type="text" name="fname"/>
+     <label id="1730290414">
+      Enter Last name
+     </label>
+     <input type="text" name="lname"/>
+     <label>
+      Enter Username
+     </label>
+     <input type="text" id="username" name="username"/>
+     <label>
+      Enter Password
+     </label>
+     <input type="text" name="password" id="password"/>
+     <button id="createuser" onclick="createUser();">
+      Sign Up
+     </button>
+     <script>
+      function createUser(){
+            var email = $('#username').val();
+            var password = $('#password').val();
+            if(email!="" && password!="")
+            {
+                  firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+                      // Handle Errors here.
+                      var errorCode = error.code;
+                      var errorMessage = error.message;
+$('#errMsg').text(errorMessage);
+                    });
+           }
+        }
+        firebase.auth().onAuthStateChanged(function(user) {
+        var lname = $('#lname').val();
+        var fname = $('#fname').val();
+          if (user) {
+              user.updateProfile({
+                  displayName: fname+" "+lname
+                 }).then(function() {
+                  // Update successful.
+                }).catch(function(error) {
+                  // An error happened.
+                });
+              window.location = "<Write Member ID page URL>";
+          } else {
+          }
+        });
+     </script>
