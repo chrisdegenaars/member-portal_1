@@ -1,0 +1,19 @@
+<script>
+ function submitForForeTees(){
+          var userId = firebase.auth().currentUser.uid;
+              firebase.database().ref('users/' + userId).once('value').then(function(snapshot) {
+              console.log(snapshot.val());
+              var memberNumber = snapshot.val().member_number;
+              $("#user_name_hidden").val(memberNumber);
+              $("#foreteesForm").submit();
+            });
+      }
+      </script>
+
+      <form action="https://www1.foretees.com/v5/servlet/Login" id="foreteesForm" method="POST" target="_blank">
+       <input type="hidden" name="clubname" value="<Club name>"/>
+       <input type="hidden" id="user_name_hidden" name="user_name"/>
+       <input type="hidden" name="caller" value="GENID79623"/>
+       <br/>
+       <input type="button" value="Login" onclick="submitForForeTees()"/>
+      </form>
